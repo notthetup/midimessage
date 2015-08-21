@@ -1,0 +1,30 @@
+{
+  "name": "midimessage",
+  "version": "1.0.0",
+  "description": "Web-MIDI Message Parser",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notthetup/midimessage.git"
+  },
+  "keywords": [
+    "midi",
+    "parse",
+    "message"
+  ],
+  "author": "Chinmay Pendharkar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notthetup/midimessage/issues"
+  },
+  "homepage": "https://github.com/notthetup/midimessage#readme",
+  "devDependencies": {
+    "babelify": "^6.2.0"
+  }
+}
