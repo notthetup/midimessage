@@ -18,6 +18,18 @@ function onMIDIInit (midi){
 	var foundString = "Found " + midi.inputs.size + " inputs and " + midi.outputs.size + " outputs.";
 	console.log(foundString);
 	console.log("Sysex is", midi.sysexEnabled ? "enabled" : "disabled");
+	onMIDIConect(midi);
+
+
+	midi.onstatechange = function(event){
+		console.log("MIDIConnectionEvent on port", event.port);
+		if (event.port.type === "input" && event.port.connection === "open"){
+			onMIDIConect(midi);
+		}
+	}
+}
+
+function onMIDIConect(midi){
 
 	for (let input of midi.inputs.values()) {
 		console.log("Input id:", input.id, input);
@@ -29,10 +41,6 @@ function onMIDIInit (midi){
 
 	for (let output of midi.outputs.values()) {
 		console.log("Output id:", output.id, output);
-	}
-
-	midi.onstatechange = function(event){
-		console.log("MIDIConnectionEvent on port", event.port);
 	}
 }
 

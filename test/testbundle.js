@@ -122,12 +122,23 @@ function onMIDIInit(midi) {
 	var foundString = "Found " + midi.inputs.size + " inputs and " + midi.outputs.size + " outputs.";
 	console.log(foundString);
 	console.log("Sysex is", midi.sysexEnabled ? "enabled" : "disabled");
+	onMIDIConect(midi);
 
+	midi.onstatechange = function (event) {
+		console.log("MIDIConnectionEvent on port", event.port);
+		if (event.port.type === "input" && event.port.connection === "open") {
+			onMIDIConect(midi);
+		}
+	};
+}
+
+function onMIDIConect(midi) {
 	var _iteratorNormalCompletion = true;
 	var _didIteratorError = false;
 	var _iteratorError = undefined;
 
 	try {
+
 		for (var _iterator = midi.inputs.values()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
 			var input = _step.value;
 
@@ -176,10 +187,6 @@ function onMIDIInit(midi) {
 			}
 		}
 	}
-
-	midi.onstatechange = function (event) {
-		console.log("MIDIConnectionEvent on port", event.port);
-	};
 }
 
 function onMIDIReject(error) {

@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "npm test"
+    "test": "browserify test/test.js -t babelify -o test/testbundle.js && http-server",
+    "build": "browserify src/index.js -t babelify -o dist/index.js"
   },
   "repository": {
     "type": "git",
