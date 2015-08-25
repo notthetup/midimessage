@@ -34,41 +34,41 @@ export default function(event){
 			case 0xA0:
 				this.messageType = "keypressure";
 				this.key = event.data[1] & 0x7F;
-				this.velocity = event.data[2] & 0x7F;
+				this.pressure = event.data[2] & 0x7F;
 			break;
 
 			// Control Change
 			case 0xB0:
 				this.messageType = "controlchange";
-				this.controlNumber = event.data[1] & 0x7F;
-				this.controlValue = event.data[2] & 0x7F;
+				this.controllerNumber = event.data[1] & 0x7F;
+				this.controllerValue = event.data[2] & 0x7F;
 
-				if (this.controlNumber === 120 && this.controlValue === 0){
+				if (this.controllerNumber === 120 && this.controllerValue === 0){
 					this.channelModeMessage = "allsoundoff";
 				}
-				else if (this.controlNumber === 121){
+				else if (this.controllerNumber === 121){
 					this.channelModeMessage = "resetallcontrollers";
 				}
-				else if (this.controlNumber === 122){
-					if (this.controlValue === 0){
+				else if (this.controllerNumber === 122){
+					if (this.controllerValue === 0){
 						this.channelModeMessage =  "localcontroloff";
 					}else{
 						this.channelModeMessage =  "localcontrolon";
 					}
 				}
-				else if (this.controlNumber === 123 && this.controlValue === 0){
+				else if (this.controllerNumber === 123 && this.controllerValue === 0){
 					this.channelModeMessage = "allnotesoff";
 				}
-				else if (this.controlNumber === 124 && this.controlValue === 0){
+				else if (this.controllerNumber === 124 && this.controllerValue === 0){
 					this.channelModeMessage = "omnimodeoff";
 				}
-				else if (this.controlNumber === 125 && this.controlValue === 0){
+				else if (this.controllerNumber === 125 && this.controllerValue === 0){
 					this.channelModeMessage = "omnimodeon";
 				}
-				else if (this.controlNumber === 126){
+				else if (this.controllerNumber === 126){
 					this.channelModeMessage = "monomodeon";
 				}
-				else if (this.controlNumber === 127){
+				else if (this.controllerNumber === 127){
 					this.channelModeMessage = "polymodeon";
 				}
 			break;
