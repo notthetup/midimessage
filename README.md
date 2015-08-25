@@ -27,15 +27,15 @@ These properties are based off the [MIDI Message Standard](http://www.midi.org/t
 
 These are some of the properties that may be exposed (based on the incoming MIDI message) :
 
-	-`channel`: _Number_ (0-127) - MIDI Channel Number.
-	-`messageType`: _String_ - Type of message. Possible values defined below.
-	-`key`: _Number_ (0-127) - The key (note) number. Defined on -`noteon`,`noteoff`,`keypressure` messages.
-	-`velocity`: _Number_ (0-127) - Velocity. Defined on `noteon`,`noteoff` messages.
-	-`controllerNumber`: _Number_ (0-127) - Controller Number. Controller numbers 120-127 are reserved as "Channel Mode Messages".
-	-`controllerValue`: _Number_ (0-127) Controller Value. Has various meanings based on `controllerNumber`.
-	-`channelModeMessage`: _String_ - Channel Mode Message. Specific messages for Channel Modes based on `controllerNumber`. Possible values defined below.
-	-`pressure`: _Number_ (0-127) - Pressure value.
-	-`pitchBend`: _Number_ (0-16383) - Pitch Bend value. Center (no pitch change) is 8192.
+- `channel`: __Number__ (0-127) - MIDI Channel Number.
+- `messageType`: __String__ - Type of message. Possible values defined below.
+- `key`: __Number__ (0-127) - The key (note) number. Defined on -`noteon`,`noteoff`,`keypressure` messages.
+- `velocity`: __Number__ (0-127) - Velocity. Defined on `noteon`,`noteoff` messages.
+- `controllerNumber`: __Number__ (0-127) - Controller Number. Controller numbers 120-127 are reserved as "Channel Mode Messages".
+- `controllerValue`: __Number__ (0-127) Controller Value. Has various meanings based on `controllerNumber`.
+- `channelModeMessage`: __String__ - Channel Mode Message. Specific messages for Channel Modes based on `controllerNumber`. Possible values defined below.
+- `pressure`: __Number__ (0-127) - Pressure value.
+- `pitchBend`: __Number__ (0-16383) - Pitch Bend value. Center (no pitch change) is 8192.
 
 
 Possible values of `messageType` property.
