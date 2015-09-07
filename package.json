@@ -1,6 +1,6 @@
 {
   "name": "midimessage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Web-MIDI Message Parser",
   "main": "dist/index.js",
   "directories": {
@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "browserify test/test.js -t babelify -o test/testbundle.js && http-server",
-    "build": "eslint src/*.js && browserify src/index.js -t babelify -o dist/index.js"
+    "test2": "browserify test/test2.js -o test/testbundle.js && http-server",
+    "build": "eslint src/*.js && browserify src/index.js --standalone midimessage -t babelify -o dist/index.js"
   },
   "repository": {
     "type": "git",
