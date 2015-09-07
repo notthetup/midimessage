@@ -7,8 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "browserify test/test.js -t babelify -o test/testbundle.js && http-server",
-    "test2": "browserify test/test2.js -o test/testbundle.js && http-server",
+    "test": "browserify test/test.js -t babelify -o test/testbundle.js && http-server test/",
+    "test-es5": "browserify test/test-es5.js -o test/testbundle.js && http-server test/",
     "build": "eslint src/*.js && browserify src/index.js --standalone midimessage -t babelify -o dist/index.js"
   },
   "repository": {

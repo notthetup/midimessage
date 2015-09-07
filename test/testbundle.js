@@ -1,4 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.midimessage = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -98,22 +100,22 @@ exports["default"] = function (event) {
 
 module.exports = exports["default"];
 
+},{}]},{},[1])(1)
+});
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],2:[function(require,module,exports){
 "use strict";
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+var MIDIMessage = require('../dist/index.js'); //eslint-disable-line
 
-var _srcIndexJs = require('../src/index.js');
-
-var _srcIndexJs2 = _interopRequireDefault(_srcIndexJs);
-
-if (navigator.requestMIDIAccess) {
-	navigator.requestMIDIAccess().then(onMIDIInit, onMIDIReject);
-} else {
+if (navigator.requestMIDIAccess){
+	navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
+}
+else{
 	console.error("DOH! No MIDI support present in your browser.");
 }
 
-function onMIDIInit(midi) {
+function onMIDIInit (midi){
 	// midi.inputs
 	// midi.onstatechange
 	// midi.outputs
@@ -124,74 +126,29 @@ function onMIDIInit(midi) {
 	console.log("Sysex is", midi.sysexEnabled ? "enabled" : "disabled");
 	onMIDIConect(midi);
 
-	midi.onstatechange = function (event) {
+
+	midi.onstatechange = function(event){
 		console.log("MIDIConnectionEvent on port", event.port);
-		if (event.port.type === "input" && event.port.connection === "open") {
+		if (event.port.type === "input" && event.port.connection === "open"){
 			onMIDIConect(midi);
 		}
-	};
-}
-
-function onMIDIConect(midi) {
-	var _iteratorNormalCompletion = true;
-	var _didIteratorError = false;
-	var _iteratorError = undefined;
-
-	try {
-
-		for (var _iterator = midi.inputs.values()[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-			var input = _step.value;
-
-			console.log("Input id:", input.id, input);
-			input.onmidimessage = function (event) {
-				var midiMessage = (0, _srcIndexJs2["default"])(event);
-				console.log("Parsed", midiMessage);
-			};
-		}
-	} catch (err) {
-		_didIteratorError = true;
-		_iteratorError = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion && _iterator["return"]) {
-				_iterator["return"]();
-			}
-		} finally {
-			if (_didIteratorError) {
-				throw _iteratorError;
-			}
-		}
-	}
-
-	var _iteratorNormalCompletion2 = true;
-	var _didIteratorError2 = false;
-	var _iteratorError2 = undefined;
-
-	try {
-		for (var _iterator2 = midi.outputs.values()[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-			var output = _step2.value;
-
-			console.log("Output id:", output.id, output);
-		}
-	} catch (err) {
-		_didIteratorError2 = true;
-		_iteratorError2 = err;
-	} finally {
-		try {
-			if (!_iteratorNormalCompletion2 && _iterator2["return"]) {
-				_iterator2["return"]();
-			}
-		} finally {
-			if (_didIteratorError2) {
-				throw _iteratorError2;
-			}
-		}
 	}
 }
 
-function onMIDIReject(error) {
+function onMIDIConect(midi){
+
+	midi.inputs.forEach(function(input){
+		console.log("Input id:", input.id, input);
+		input.onmidimessage = function(event){
+			var midiMessage = MIDIMessage(event);
+			console.log("Parsed", midiMessage);
+		}
+	});
+}
+
+function onMIDIReject (error){
 	console.error(error);
 	return;
 }
 
-},{"../src/index.js":1}]},{},[2]);
+},{"../dist/index.js":1}]},{},[2]);
