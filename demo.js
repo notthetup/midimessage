@@ -1,6 +1,6 @@
 "use strict";
 
-import MIDIMessage from '../src/index.js';
+import MIDIMessage from './dist/index.js';
 
 if (navigator.requestMIDIAccess){
 	navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );

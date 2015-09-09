@@ -1,6 +1,6 @@
 "use strict";
 
-var MIDIMessage = require('../dist/index.js'); //eslint-disable-line
+var MIDIMessage = require('./dist/index.js'); //eslint-disable-line
 
 if (navigator.requestMIDIAccess){
 	navigator.requestMIDIAccess().then( onMIDIInit, onMIDIReject );
