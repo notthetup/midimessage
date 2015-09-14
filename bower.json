@@ -20,6 +20,14 @@
     "bower_components",
     "test",
     "tests",
-    "src"
+    "src",
+    "bower.json",
+    "demo.js",
+    "demobundle.js",
+    "demo-es5.js",
+    "index.html",
+    "LICENSE"
+    "package.json",
+    "README.md"
   ]
 }
