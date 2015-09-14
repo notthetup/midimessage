@@ -1,6 +1,6 @@
 {
   "name": "midimessage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Web-MIDI Message Parser",
   "main": "dist/index.min.js",
   "directories": {

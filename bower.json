@@ -1,6 +1,6 @@
 {
   "name": "midimessage",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "authors": [
     "Chinmay Pendharkar <notthetup@gmail.com>"
   ],
@@ -26,7 +26,7 @@
     "demobundle.js",
     "demo-es5.js",
     "index.html",
-    "LICENSE"
+    "LICENSE",
     "package.json",
     "README.md"
   ]
