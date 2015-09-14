@@ -1,0 +1,25 @@
+{
+  "name": "midimessage",
+  "version": "1.0.5",
+  "authors": [
+    "Chinmay Pendharkar <notthetup@gmail.com>"
+  ],
+  "description": "Web-MIDI Message Parser",
+  "main": "dist/index.js",
+  "keywords": [
+    "midi",
+    "parse",
+    "message",
+    "webmidi"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/notthetup/midimessage",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "src"
+  ]
+}
