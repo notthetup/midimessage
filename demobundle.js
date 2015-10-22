@@ -144,7 +144,7 @@ function onMIDIReject(error) {
 					}
 
 					this._messageCode = event.data[0] & 0xf0;
-					this.channel = event.data[0] & 0x0f;
+					this.channel = (event.data[0] & 0x0f) + 1;
 
 					switch (this._messageCode) {
 
