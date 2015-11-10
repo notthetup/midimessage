@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "browserify demo.js -t babelify -o demobundle.js && http-server",
-    "test-es5": "browserify test/test-es5.js -o test/testbundle.js && http-server test/",
+    "test-es5": "browserify demo-es5.js -o demobundle.js && http-server",
     "build": "eslint src/*.js && browserify src/index.js --standalone midimessage -t babelify -o dist/index.js && uglifyjs dist/index.js --mangle --source-map dist/index.js.map --output dist/index.min.js"
   },
   "repository": {
