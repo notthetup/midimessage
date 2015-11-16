@@ -20,10 +20,19 @@ function onMIDIInit (midi){
 	console.log("Sysex is", midi.sysexEnabled ? "enabled" : "disabled");
 	onMIDIConect(midi);
 
+	midi.outputs.forEach(function(output){
+		console.log("Output id:", output.id, output);
+		if (output.manufacturer === "Teensyduino"){
+			console.log("Found Teensy", output);
+			window.teensy = output;
+			output.open();
+		}
+	});
+
 
 	midi.onstatechange = function(event){
 		console.log("MIDIConnectionEvent on port", event.port);
-		if (event.port.type === "input" && event.port.connection === "open"){
+		if (event.port.connection === "open"){
 			onMIDIConect(midi);
 		}
 	}
