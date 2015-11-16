@@ -33,6 +33,9 @@ function onMIDIConect(midi){
 
 	for (let input of midi.inputs.values()) {
 		console.log("Input id:", input.id, input);
+		if (input.manufacturer === 'Teensyduino'){
+			window.teensy = input;
+		}
 		input.onmidimessage = function(event){
 			var midiMessage = MIDIMessage(event);
 			console.log("Parsed", midiMessage);
