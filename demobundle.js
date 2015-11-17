@@ -19,7 +19,7 @@ function onMIDIInit (midi){
 	var foundString = "Found " + midi.inputs.size + " inputs and " + midi.outputs.size + " outputs.";
 	console.log(foundString);
 	console.log("Sysex is", midi.sysexEnabled ? "enabled" : "disabled");
-	onMIDIConect(midi);
+	// onMIDIConect(midi);
 
 	midi.outputs.forEach(function(output){
 		console.log("Output id:", output.id, output);
@@ -29,25 +29,30 @@ function onMIDIInit (midi){
 			output.open();
 		}
 	});
+	
+	midi.inputs.forEach(function(input){
+		onMIDIConect(input);
+	})
 
 
 	midi.onstatechange = function(event){
 		console.log("MIDIConnectionEvent on port", event.port);
-		if (event.port.connection === "open"){
-			onMIDIConect(midi);
+		if (event.port.type === 'input' && event.port.connection === "open"){
+			onMIDIConect(event.port);
+		}else if (event.port.type === 'output' && event.port.connection === "closed" && event.port.manufacturer === "Teensyduino"){
+			console.log("Found Teensy", event.port);
+			window.teensy = event.port;
+			event.port.open();
 		}
 	}
 }
 
-function onMIDIConect(midi){
-
-	midi.inputs.forEach(function(input){
-		console.log("Input id:", input.id, input);
-		input.onmidimessage = function(event){
-			var midiMessage = MIDIMessage(event);
-			console.log("Parsed", midiMessage);
-		}
-	});
+function onMIDIConect(input){
+	console.log("Input id:", input.id, input);
+	input.onmidimessage = function(event){
+		var midiMessage = MIDIMessage(event);
+		console.log("Parsed", midiMessage);
+	}
 }
 
 function onMIDIReject (error){
