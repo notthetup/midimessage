@@ -5,11 +5,10 @@
 		"browser": true,
 		"es6": true
 	},
-	"ecmaFeatures": {
-			"module": true,
-			"modules": true
-	},
 	"rules": {
 		"no-console": 0
+	},
+	"parserOptions": {
+		"sourceType": "module"
 	}
 }

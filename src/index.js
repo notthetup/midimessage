@@ -90,7 +90,7 @@ export default function(event){
 				this.messageType = "pitchbendchange";
 				var msb = event.data[2] & 0x7F;
 				var lsb = event.data[1] & 0x7F;
-				this.pitchBend = (msb << 8) + lsb;
+				this.pitchBend = (msb << 7) + lsb;
 			break;
 		}
 	}
